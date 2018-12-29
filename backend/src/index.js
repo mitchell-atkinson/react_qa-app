@@ -65,6 +65,7 @@ app.post('/answer/:id', (req, res) => {
 
   question[0].answers.push({
     answer,
+    author: 'Anon'
   });
 
   res.status(200).send();
