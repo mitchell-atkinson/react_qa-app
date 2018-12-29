@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import axios from 'axios';
 import SubmitAnswer from '../SubmitAnswer/SubmitAnswer';
 import {withRouter} from 'react-router-dom';
+import Answers from '../Answers/Answers';
 
 class Question extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class Question extends Component {
 
     this.submitAnswer = this.submitAnswer.bind(this);
     this.deleteQuestion = this.deleteQuestion.bind(this);
+    this.deleteAnswer = this.deleteAnswer.bind(this);
   }
 
   async componentDidMount() {
@@ -34,9 +36,14 @@ class Question extends Component {
     await this.refreshQuestion();
   }
 
-  async deleteQuestion(answer) {
+  async deleteQuestion() {
     await axios.post(`http://localhost:8081/delete/${this.state.question.id}`);
     this.props.history.push('/');
+  }
+
+  async deleteAnswer(answerId){
+    await axios.post(`http://localhost:8081/delete/${this.state.question.id}/comments/${answerId}`);
+    await this.refreshQuestion();
   }
 
   render() {
@@ -51,11 +58,7 @@ class Question extends Component {
             <hr className="my-4" />
             <SubmitAnswer questionId={question.id} submitAnswer={this.submitAnswer} deleteQuestion={this.deleteQuestion} />
             <p>Answers:</p>
-            {
-              question.answers.map((answer, idx) => (
-                <p className="lead" key={idx}>{answer.answer}</p>
-              ))
-            }
+            <Answers submittedAnswers={question.answers} deleteAnswer={this.deleteAnswer}/>
           </div>
         </div>
       </div>
