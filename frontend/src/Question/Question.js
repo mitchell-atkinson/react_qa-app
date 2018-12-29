@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import SubmitAnswer from '../SubmitAnswer/SubmitAnswer';
+import {withRouter} from 'react-router-dom';
 
 class Question extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class Question extends Component {
     };
 
     this.submitAnswer = this.submitAnswer.bind(this);
+    this.deleteQuestion = this.deleteQuestion.bind(this);
   }
 
   async componentDidMount() {
@@ -32,6 +34,11 @@ class Question extends Component {
     await this.refreshQuestion();
   }
 
+  async deleteQuestion(answer) {
+    await axios.post(`http://localhost:8081/delete/${this.state.question.id}`);
+    this.props.history.push('/');
+  }
+
   render() {
     const {question} = this.state;
     if (question === null) return <p>Loading ...</p>;
@@ -42,7 +49,7 @@ class Question extends Component {
             <h1 className="display-3">{question.title}</h1>
             <p className="lead">{question.description}</p>
             <hr className="my-4" />
-            <SubmitAnswer questionId={question.id} submitAnswer={this.submitAnswer} />
+            <SubmitAnswer questionId={question.id} submitAnswer={this.submitAnswer} deleteQuestion={this.deleteQuestion} />
             <p>Answers:</p>
             {
               question.answers.map((answer, idx) => (
@@ -56,4 +63,4 @@ class Question extends Component {
   }
 }
 
-export default Question;
+export default withRouter(Question);

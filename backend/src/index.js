@@ -71,6 +71,17 @@ app.post('/answer/:id', (req, res) => {
   res.status(200).send();
 });
 
+// delete a question
+app.post('/delete/:id', (req, res) => {
+
+  const question = questions.filter(q => (q.id === parseInt(req.params.id)));
+  if (question.length > 1) return res.status(500).send();
+  if (question.length === 0) return res.status(404).send();
+  questions.splice(questions.indexOf(question[0]),1)
+
+  res.status(200).send();
+});
+
 // start the server
 app.listen(8081, () => {
   console.log('listening on port 8081');

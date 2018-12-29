@@ -17,7 +17,6 @@ class SubmitAnswer extends Component {
   
     submit() {
       this.props.submitAnswer(this.state.answer);
-  
       this.setState({
         answer: '',
       });
@@ -37,7 +36,12 @@ class SubmitAnswer extends Component {
             />
           </div>
           <button
-            className="btn btn-primary"
+            className="btn btn-danger"
+            onClick={() => {this.props.deleteQuestion()}}>
+            Delete
+          </button>
+          <button
+            className="btn btn-primary float-sm-right"
             onClick={() => {this.submit()}}>
             Submit
           </button>
