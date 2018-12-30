@@ -54,7 +54,7 @@ class Question extends Component {
         <div className="row">
           <div className="jumbotron col-12">
             <h1 className="display-3">{question.title}</h1>
-            <p className="lead">{question.description}</p>
+            <p className="lead">{question.description}{question.author}</p>
             <hr className="my-4" />
             <SubmitAnswer questionId={question.id} submitAnswer={this.submitAnswer} deleteQuestion={this.deleteQuestion} />
             <p>Answers:</p>

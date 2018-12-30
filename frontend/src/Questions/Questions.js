@@ -40,7 +40,7 @@ class Questions extends Component {
                           <h4 className="card-title">{question.title}</h4>
                           <p className="card-text">{question.description}</p>
                         </div>
-                        <div class="card-footer">
+                        <div className="card-footer">
                           <small>Answers: {question.answers}</small><Link to={`/question/${question.id}`} className="btn btn-primary float-sm-right">{(question.answers > 0 ? 'View' : 'Answer')}</Link>
                         </div>
                       </div>

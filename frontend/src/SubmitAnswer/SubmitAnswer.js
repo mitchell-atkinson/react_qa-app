@@ -9,12 +9,14 @@ class SubmitAnswer extends Component {
       };
     }
   
+    // func to update the answer as it is typed
     updateAnswer(value) {
       this.setState({
         answer: value,
       });
     }
   
+    // handler function to initiate the post to the api with the new answer
     submit() {
       this.props.submitAnswer(this.state.answer);
       this.setState({

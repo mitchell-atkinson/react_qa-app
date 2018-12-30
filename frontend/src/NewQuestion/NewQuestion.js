@@ -7,24 +7,27 @@ class NewQuestion extends Component {
       super(props);
   
       this.state = {
-        disabled: false,
-        title: '',
-        description: '',
+        disabled: false, // disable the form on submit
+        title: '', // title of question
+        description: '', // description of question
       };
     }
-  
+    
+    // func to update the description as it is entered
     updateDescription(value) {
       this.setState({
         description: value,
       });
     }
   
+    // func to update the title as it is entered
     updateTitle(value) {
       this.setState({
         title: value,
       });
     }
   
+    // function to disable the form and post the new question details before navigating back to the root
     async submit() {
       this.setState({
         disabled: true,

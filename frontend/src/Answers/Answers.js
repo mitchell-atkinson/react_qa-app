@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 
+// Component to display the answers associated with a question
 class Answers extends Component {
     render() {
         return (
