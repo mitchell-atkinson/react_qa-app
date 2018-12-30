@@ -2,10 +2,6 @@ import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 
 class Answers extends Component {
-    constructor(props){ 
-        super(props);
-    }
-
     render() {
         return (
             this.props.submittedAnswers.map((answer, idx) => (
